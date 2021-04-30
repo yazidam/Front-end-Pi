@@ -1,0 +1,48 @@
+@media (min-width: 992px) {
+#bgfooter{
+    background-color: #191313;
+    height: 250px;
+}
+}
+@media (max-width: 992px) {
+    #bgfooter{
+        background-color: #191313;
+        text-align: center;
+    }
+}
+
+#mainfooter{
+    color: rgb(255,255,255);
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 0%;
+}
+
+.part{
+    margin-top: 30px;
+}
+p{
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.separation{
+    width: 100%;
+    height: 1px;
+    background-color: #ffffff;
+}
+#secicon{
+    font-size: 12px;
+}
+
+.sociaux{
+    margin-left: 10px;
+    font-size: 25px;
+    margin-right: 15px;
+}
+
+.contact{
+    margin-left: 0px;
+    margin-right: 10px;
+    font-size: 20px;
+}

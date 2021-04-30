@@ -1,0 +1,32 @@
+.pagination {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+
+  display: flex;
+  justify-content: center;
+}
+.pagination a {
+  padding: 5px;
+  margin: 2px;
+  border-radius: 5px;
+  border: 1px solid #a9a9a9;
+  color: #a9a9a9;
+  cursor: pointer;
+}
+.pagination a:hover {
+  color: white;
+  background-color: #e08215;
+}
+
+.active a {
+  color: white;
+  /* background-color: #a9a9a9; */
+}
+
+.table {
+  border: 1px solid #eeeeee;
+  box-shadow: 12px 12px 22px grey;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}

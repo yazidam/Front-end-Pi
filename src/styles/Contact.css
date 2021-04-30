@@ -1,0 +1,39 @@
+#seccontact{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  #rowcontact {
+    /*background-color: #bfe2fd;*/
+    /*background-color: #3DCCDA;*/
+    /* background-color: #11cdef; */
+    background-color: #ced1d3;
+    border-radius: 30px;
+    box-shadow: 12px 12px 22px grey;
+  }
+  /* .leaflet-container {
+    width: 400px;
+    height: 500px;
+  } */
+  #imgpositionEsprit{
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    height: 600px;
+    width: auto;
+  }
+  #btncontact{
+    border:none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+  #btncontact:hover{
+    background: white;
+    border: 1px solid;
+    color: black;
+  }

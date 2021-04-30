@@ -1,0 +1,79 @@
+@media (min-width: 992px) {
+.imgcarousel{
+    width: auto;
+    height: 550px;
+}
+}
+
+@media (max-width: 992px) {
+    .imgcarousel{
+        width: auto;
+        height: 250px;
+    }
+    }
+
+#bodyhome{
+    /*background-color: #bfe2fd;*/
+    /* background-color: #3DCCDA; */
+    /* background-color: #f1f3f4; */
+    background-color: #ced1d3;
+}
+
+#carouselExampleIndicators{
+    box-shadow: 12px 12px 15px grey;
+    
+}
+
+#icondiv {
+    background-color: #ff8b3d;
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    margin: auto;
+}
+
+#h4homepage{
+    margin-top: 150px;
+}
+
+#rowhomepage{
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.divcercle{
+    margin-top: 15px;
+}
+
+.paracercle{
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+#cercle1{
+    font-size: 50px;
+    color: rgb(255,255,255);
+    margin-top: 22px;
+    margin-left: 22px;
+}
+
+#cercle2{
+    font-size: 50px;
+    color: rgb(255,255,255);
+    margin-top: 25px;
+    margin-left: 24px;
+}
+
+#cercle3{
+    font-size: 50px;
+    color: rgb(255,255,255);
+    margin-top: 25px;
+    margin-left: 25px;
+}
+
+#cercle4{
+    font-size: 50px;
+    color: rgb(255,255,255);
+    margin-top: 24px;
+    margin-left: 25px;
+}

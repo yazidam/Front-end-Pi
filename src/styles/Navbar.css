@@ -1,0 +1,53 @@
+@media (min-width: 992px) {
+  #mainnav {
+    padding-left: 70px;
+    padding-right: 70px;
+    
+  }
+}
+
+nav{
+  /*background-color: #bfe2fd;*/
+  /*background-color: #B0CBDE;*/
+  /*background-color: #3D90DA;*/
+  /*background-color: #3DCCDA;*/
+  /*background-color: #04ccbc;*/
+  /* background-color: #11cdef; */
+  /* background-color: #3c3c3b; */
+  /* background-color: #9e9e9e; */
+  /* background-color: #b9b9b9; */
+  /* background-color: #f1f3f4; */
+  background-color: #ced1d3;
+}
+
+.nav-item {
+  margin-right: 5px;
+  font-size: 16px;
+}
+.navbar-brand{
+  font-size: 23px;
+}
+
+#contact {
+  padding-right: 30px;
+}
+
+#login {
+  color: #ff8b3d;
+}
+
+#signup {
+  color: #ff8b3d;
+}
+#logout{
+  color: #ff8b3d;
+}
+#Workspace{
+  color: #ff8b3d;
+}
+
+#logo {
+  width: 100px;
+  height: 100px;
+  margin-right: 25px;
+}
