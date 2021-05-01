@@ -27,51 +27,41 @@ const ProfileDeliveryMan = (props) => {
   }, [Cookies.get()]);
   return (
     <div style={{ height: '700px' }}>
-      <h1>Profile Delivery Mannnnnn</h1>
-      <div style={{ height: '600px' }}>
-        <div className="container " style={{ margin: '7pc' }}>
-          <div className="main-body">
-            <div className="row gutters-sm">
-              <div className="col-md-8">
-                <div className="card mb-8">
-                  <div className="card-body">
-                    <div className="row">
-                      <div className="col-sm-3">
-                        <h6 className="mb-0">User Name</h6>
-                      </div>
-                      <div className="col-sm-9 text-secondary">
-                        {' '}
-                        {connectUser.username}
-                      </div>
+      <body className="bg-light">
+        <div className="container">
+          <h1 className="text-center">I'm Profile</h1>
+          <div className="row d-flex justify-content-center">
+            <div className="col-md-10 mt-5 pt-5">
+              <div className="row z-depth-3">
+                <div className="col-sm-4 bg-info rounded-left">
+                  <div className="card-block text-center text-white">
+                    <i className="fas fa-user-tie fa-7x mt-5" />
+                    <h2 className="font-weight-bold mt-4">
+                      {connectUser.username}
+                    </h2>
+                    <p>Your Profile</p>
+                    <i className="far fa-edit fa-2x mb-4"></i>
+                  </div>
+                </div>
+                <div className="col-sm-8 bg-white rounded-right">
+                  <h3 className="mt-3 text-center"> Information</h3>
+                  <hr className="badge-primary mt-0 " />
+                  <div className="row">
+                    <div className="col-sm-6">
+                      <p className="font-weight-bold"> Email</p>
+                      <h6 className="text-muted">{connectUser.email}</h6>
                     </div>
-                    <hr />
-                    <div className="row">
-                      <div className="col-sm-3">
-                        <h6 className="mb-0">Email</h6>
-                      </div>
-
-                      <div className="col-sm-9 text-secondary">
-                        {connectUser.email}
-                      </div>
+                    <div className="col-sm-6">
+                      <p className="font-weight-bold"> Adresse</p>
+                      <h6 className="text-muted">{connectUser.adresse}</h6>
                     </div>
-                    <hr />
-                    <div className="row">
-                      <div className="col-sm-3">
-                        <h6 className="mb-0">Phone</h6>
-                      </div>
-                      <div className="col-sm-9 text-secondary">
-                        {connectUser.phone}
-                      </div>
+                    <div className="col-sm-6">
+                      <p className="font-weight-bold"> Phone</p>
+                      <h6 className="text-muted">{connectUser.phone}</h6>
                     </div>
-                    <hr />
-
-                    <div className="row">
-                      <div className="col-sm-3">
-                        <h6 className="mb-0">Address</h6>
-                      </div>
-                      <div className="col-sm-9 text-secondary">
-                        {connectUser.adresse}
-                      </div>
+                    <div className="col-sm-6">
+                      <p className="font-weight-bold"> Role</p>
+                      <h6 className="text-muted">{connectUser.role}</h6>
                     </div>
                   </div>
                 </div>
@@ -79,7 +69,7 @@ const ProfileDeliveryMan = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </body>
     </div>
   );
 };
