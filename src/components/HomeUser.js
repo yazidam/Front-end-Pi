@@ -45,6 +45,7 @@ import CiruitDeliveryMan from './user/Map/CiruitDeliveryMan';
 import BarcodeGenerator from './user/QR/BarcodeGenerator';
 import Archiveciruitdeliveruman from './user/ARCHIVE/Archiveciruitdeliveruman';
 import Functionarchive from './user/ARCHIVE/Functionarchive';
+import Statsdeliyers from './company/ahmed/STAT/Statsdeliyers';
 
 export default function HomeUser(props) {
   const [connectUser, error] = useSelector(selectConnectuser);
@@ -199,6 +200,10 @@ export default function HomeUser(props) {
                 <Route
                   path="/homeuser/company/deliverymanagementbyadmincompany/:id"
                   component={DeliveryManagement}
+                />
+                <Route
+                  path="/homeuser/company/statdelivery"
+                  component={Statsdeliyers}
                 />
               </Switch>
             </div>

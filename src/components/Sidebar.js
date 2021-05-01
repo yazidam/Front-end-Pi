@@ -160,6 +160,15 @@ export default function Sidebar() {
                   <span className="title">Delivery Management</span>
                 </NavLink>
               </li>
+
+              <li>
+                <NavLink to="/homeuser/company/statdelivery">
+                  <span className="icon">
+                    <i className="fa fa-upload"></i>
+                  </span>
+                  <span className="title">Statistic</span>
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>

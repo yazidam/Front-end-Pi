@@ -26,7 +26,7 @@ export default function Profile(props) {
     <div style={{ height: '700px' }}>
       <body className="bg-light">
         <div className="container">
-          <h1>i'm profile</h1>
+          <h1 className="text-center">I'm Profile</h1>
           <div className="row d-flex justify-content-center">
             <div className="col-md-10 mt-5 pt-5">
               <div className="row z-depth-3">
