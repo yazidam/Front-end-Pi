@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+//import { useHistory, useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import {

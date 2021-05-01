@@ -164,7 +164,7 @@ export default function Sidebar() {
               <li>
                 <NavLink to="/homeuser/company/statdelivery">
                   <span className="icon">
-                    <i className="fa fa-upload"></i>
+                    <i className=" fa fa-bar-chart"></i>
                   </span>
                   <span className="title">Statistic</span>
                 </NavLink>
