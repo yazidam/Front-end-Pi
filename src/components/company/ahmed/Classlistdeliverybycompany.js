@@ -3,7 +3,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import '../../.././App.css';
 import {
   loginUserfind,
   selectConnectuser,
@@ -95,14 +95,33 @@ export default function Classlistdeliverybycompany(props) {
         console.log(error);
       });
   };
+  ///////////delete function///////////////////
+  const handleSubmit = (_id) => {
+    console.log(_id);
+    history.push('/delivery');
+    axios
+      .delete(
+        `http://localhost:5000/delivery/passdelivery/${_id}`,
+
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log('data: ', res);
+
+        setStudentState(res.data.data);
+        console.log(res.data);
+      });
+    window.location.reload();
+    console.log('ahmedd ', props.vk);
+  };
 
   return (
-    <div className="container">
+    <div className="container" style={{ height: '700px' }}>
       <div className="row">
         <div className="col-lg-9 mt-2 mb-2"></div>
         <div className="col-lg-3 mt-2 mb-2"></div>
       </div>
-      <table className="table table-dark table-striped">
+      <table className="  table table-dark table-striped">
         <thead>
           <tr>
             <th scope="col">
@@ -149,6 +168,25 @@ export default function Classlistdeliverybycompany(props) {
               <td>{vk.description}</td>
               <td>{vk.from}</td>
               <td>{vk.to}</td>
+              <td>
+                {' '}
+                {/* <span
+                  className="icon"
+                  onClick={() => {
+                    handleSubmit(vk._id);
+                  }}
+                >
+                  <i className="fa fa-trash" style={{ color: 'red' }}></i>
+                </span> */}
+                {/* <a
+                  className="btn btn-primary my-2"
+                  onClick={() => {
+                    handleSubmit(vk._id);
+                  }}
+                >
+                  Done
+                </a> */}
+              </td>
             </tr>
           ))}
         </tbody>
