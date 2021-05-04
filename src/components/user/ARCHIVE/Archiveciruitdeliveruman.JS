@@ -106,7 +106,7 @@ class Archiveciruitdeliveruman extends Component {
           <h3>Number Of Successful Delivery : {this.state.archives.length}</h3>
           <h3 className="my-5">
             Your State This Week :{' '}
-            {this.state.archives.length > 5 ? 'Good ' : 'Bad'}
+            {this.state.archives.length >= 3 ? 'Good ' : 'Bad'}
           </h3>
         </div>
       </div>
