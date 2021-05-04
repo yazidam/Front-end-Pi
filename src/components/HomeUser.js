@@ -40,7 +40,7 @@ import DetailsVehicleCompany from './company/Raed/DetailsVehicle';
 import HomeDeliveryman from './user/HomeDeliveryman';
 import ProfileDeliveryMan from './user/ProfileDeliveryMan';
 import DeliveryManPackage from './user/DeliveryManPackage';
-import MapQuest from './user/Map/MapQuest';
+//import MapQuest from './user/Map/MapQuest';
 import CiruitDeliveryMan from './user/Map/CiruitDeliveryMan';
 import BarcodeGenerator from './user/QR/BarcodeGenerator';
 import Archiveciruitdeliveruman from './user/ARCHIVE/Archiveciruitdeliveruman';

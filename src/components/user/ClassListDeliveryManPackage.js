@@ -420,7 +420,7 @@ export default function ClassListDeliveryManPackage(props) {
       },
     ]);
     const midell = await axios.get(
-      `https://geocode.search.hereapi.com/v1/geocode?q=${itemname}&apiKey=VdHc6KkjnNXOKCGhQ2MHuXOyQcM8G5O5rjJNbVte46M`,
+      `https://geocode.search.hereapi.com/v1/geocode?q=${itemname}&apiKey=7TebmvCdaeIAJJxdxyNNGulr8JB78hKUX4tvhOjBXxg`,
       { withCredentials: true }
     );
     setPoints([...points, midell.data.items[0].position]);
@@ -431,7 +431,7 @@ export default function ClassListDeliveryManPackage(props) {
 
   const aff = async () => {
     const startpossition = await axios.get(
-      `https://geocode.search.hereapi.com/v1/geocode?q=${start}&apiKey=VdHc6KkjnNXOKCGhQ2MHuXOyQcM8G5O5rjJNbVte46M`,
+      `https://geocode.search.hereapi.com/v1/geocode?q=${start}&apiKey=7TebmvCdaeIAJJxdxyNNGulr8JB78hKUX4tvhOjBXxg`,
       { withCredentials: true }
     );
     const route = {
@@ -443,8 +443,10 @@ export default function ClassListDeliveryManPackage(props) {
     });
     const tr = x.data.waypoints;
     const str = x.data.start;
+    //const traget = x.data.dataaa.dist;
     console.log('debut du ciruit', x.data.start);
     console.log('table point ciruit', x.data.waypoints);
+    // console.log('tragett', x.data.dataaa.dist);
     setPointsval([...pointsval, x]);
     console.log('tr', tr);
 
@@ -459,6 +461,7 @@ export default function ClassListDeliveryManPackage(props) {
     });
     console.log('aa', val);
     console.log('val2', val2);
+    // console.log('val3', val3);
   };
 
   useEffect(async () => {
@@ -518,7 +521,7 @@ export default function ClassListDeliveryManPackage(props) {
                 // list.map((l) => {
                 //   axios
                 //     .get(
-                //       `https://geocode.search.hereapi.com/v1/geocode?q=${l.from}&apiKey=VdHc6KkjnNXOKCGhQ2MHuXOyQcM8G5O5rjJNbVte46M`,
+                //       `https://geocode.search.hereapi.com/v1/geocode?q=${l.from}&apiKey=7TebmvCdaeIAJJxdxyNNGulr8JB78hKUX4tvhOjBXxg`,
                 //       { withCredentials: true }
                 //     )
                 //     .then((res, err) => {
@@ -548,7 +551,7 @@ export default function ClassListDeliveryManPackage(props) {
                 listto.map((t) => {
                   axios
                     .get(
-                      `https://geocode.search.hereapi.com/v1/geocode?q=${t.to}&apiKey=VdHc6KkjnNXOKCGhQ2MHuXOyQcM8G5O5rjJNbVte46M`,
+                      `https://geocode.search.hereapi.com/v1/geocode?q=${t.to}&apiKey=7TebmvCdaeIAJJxdxyNNGulr8JB78hKUX4tvhOjBXxg`,
                       { withCredentials: true }
                     )
                     .then((res, err) => {
@@ -589,7 +592,7 @@ export default function ClassListDeliveryManPackage(props) {
     list.map((l) => {
       axios
         .get(
-          `https://geocode.search.hereapi.com/v1/geocode?q=${l.from}&apiKey=VdHc6KkjnNXOKCGhQ2MHuXOyQcM8G5O5rjJNbVte46M`,
+          `https://geocode.search.hereapi.com/v1/geocode?q=${l.from}&apiKey=7TebmvCdaeIAJJxdxyNNGulr8JB78hKUX4tvhOjBXxg`,
           { withCredentials: true }
         )
         .then((res, err) => {
