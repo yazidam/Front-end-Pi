@@ -17,24 +17,19 @@ export default function Classlistdeliverybycompany(props) {
   useEffect(async () => {
     if (Cookies.get('connect.sid')) {
     } else {
-      await axios
-        .get('http://localhost:5000/auth/logout', { withCredentials: true })
-        .then((res) => {
-          console.log(res);
-          localStorage.removeItem('userInfo');
-          dispatch(loginUserfind(res.data));
-          props.history.push('/');
-        });
+      await axios.get('/auth/logout', { withCredentials: true }).then((res) => {
+        console.log(res);
+        localStorage.removeItem('userInfo');
+        dispatch(loginUserfind(res.data));
+        props.history.push('/');
+      });
     }
   }, [Cookies.get()]);
   useEffect(() => {
     axios
-      .get(
-        `http://localhost:5000/delivery/listdeliverybycompany/${connectUser.id}`,
-        {
-          withCredentials: true,
-        }
-      )
+      .get(`/delivery/listdeliverybycompany/${connectUser.id}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         // setStudentState(res.data.data);
         setStudentState(
@@ -77,7 +72,7 @@ export default function Classlistdeliverybycompany(props) {
     console.log(array);
     //console.log(checkData)
     axios
-      .post('http://localhost:5000/circuit/add', array, {
+      .post('/circuit/add', array, {
         withCredentials: true,
       })
       .then((res) => {
@@ -101,7 +96,7 @@ export default function Classlistdeliverybycompany(props) {
     history.push('/delivery');
     axios
       .delete(
-        `http://localhost:5000/delivery/passdelivery/${_id}`,
+        `/delivery/passdelivery/${_id}`,
 
         { withCredentials: true }
       )

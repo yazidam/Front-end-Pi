@@ -26,14 +26,12 @@ export default function Classdeliverymanagement(props) {
   useEffect(async () => {
     if (Cookies.get('connect.sid')) {
     } else {
-      await axios
-        .get('http://localhost:5000/auth/logout', { withCredentials: true })
-        .then((res) => {
-          console.log(res);
-          localStorage.removeItem('userInfo');
-          dispatch(loginUserfind(res.data));
-          props.history.push('/');
-        });
+      await axios.get('/auth/logout', { withCredentials: true }).then((res) => {
+        console.log(res);
+        localStorage.removeItem('userInfo');
+        dispatch(loginUserfind(res.data));
+        props.history.push('/');
+      });
     }
   }, [Cookies.get()]);
   const { id } = useParams();
@@ -46,12 +44,9 @@ export default function Classdeliverymanagement(props) {
     console.log(location.state.detail); // result: 'some_value'
 
     axios
-      .get(
-        `http://localhost:5000/delivery/listdeliverybycompany/${connectUser.id}`,
-        {
-          withCredentials: true,
-        }
-      )
+      .get(`/delivery/listdeliverybycompany/${connectUser.id}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log('id user est', connectUser.id);
         // setStudentState(res.data.data);
@@ -64,10 +59,9 @@ export default function Classdeliverymanagement(props) {
   }, []);
   function getname() {
     axios
-      .get(
-        `http://localhost:5000/livreur/users/deliveryman/${connectUser.id}`,
-        { withCredentials: true }
-      )
+      .get(`/livreur/users/deliveryman/${connectUser.id}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         const dataa = res.data.data;
         console.log(dataa);
@@ -81,7 +75,7 @@ export default function Classdeliverymanagement(props) {
   }
   function voiture() {
     axios
-      .get(`http://localhost:5000/vehicules/getvehicules/${connectUser.id}`, {
+      .get(`/vehicules/getvehicules/${connectUser.id}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -136,7 +130,7 @@ export default function Classdeliverymanagement(props) {
     console.log(id);
 
     axios
-      .get(`http://localhost:5000/delivery/admin/passdelivery/${id}`, {
+      .get(`/delivery/admin/passdelivery/${id}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -148,7 +142,7 @@ export default function Classdeliverymanagement(props) {
       });
 
     axios
-      .post('http://localhost:5000/adminpassdelivery/add', data, {
+      .post('/adminpassdelivery/add', data, {
         withCredentials: true,
       })
       .then((res) => {
@@ -224,7 +218,7 @@ export default function Classdeliverymanagement(props) {
 
     //console.log('array : ',this.props.array);
     axios
-      .get(http://localhost:5000/delivery/admin/passdelivery/${id}, {
+      .get(/delivery/admin/passdelivery/${id}, {
         withCredentials: true,
       })
       .then((res) => {
@@ -256,7 +250,7 @@ export default function Classdeliverymanagement(props) {
   };
   getname() {
     axios.get(
-        http://localhost:5000/livreur/users/deliveryman/${this.props.con.id},
+        /livreur/users/deliveryman/${this.props.con.id},
         {
           withCredentials: true,
         }
@@ -281,7 +275,7 @@ export default function Classdeliverymanagement(props) {
   voiture() {
     axios
       .get(
-        http://localhost:5000/vehicules/getvehicules/${this.props.con.id},
+        /vehicules/getvehicules/${this.props.con.id},
         {
           withCredentials: true,
         }
@@ -308,7 +302,7 @@ export default function Classdeliverymanagement(props) {
     const id = this.props.match.params.id;
     console.log(id);
     axios
-      .get(http://localhost:5000/delivery/admin/passdelivery/${id}, {
+      .get(/delivery/admin/passdelivery/${id}, {
         withCredentials: true,
       })
       .then((res) => {
@@ -346,7 +340,7 @@ export default function Classdeliverymanagement(props) {
          vehiculeID: this.state.modele.value,
         }
       axios
-        .post(http://localhost:5000/adminpassdelivery/add, data,{
+        .post(/adminpassdelivery/add, data,{
           withCredentials: true,
         })
         .then((res) => {

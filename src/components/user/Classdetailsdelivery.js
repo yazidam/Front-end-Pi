@@ -11,7 +11,7 @@ export default class Classdetailsdelivery extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     axios
-      .get(`http://localhost:5000/delivery/passdelivery/${id}`, {
+      .get(`/delivery/passdelivery/${id}`, {
         withCredentials: true,
       })
       .then((res) => {

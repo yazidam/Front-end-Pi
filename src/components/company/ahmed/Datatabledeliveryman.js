@@ -24,7 +24,7 @@ const Datatable = (props) => {
     // //history.push('/delivery');
     axios
       .delete(
-        `http://localhost:5000/livreur/users/deliveryman/${props.vk._id}`,
+        `/livreur/users/deliveryman/${props.vk._id}`,
 
         { withCredentials: true }
       )

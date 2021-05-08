@@ -14,7 +14,7 @@ class Classeditlivreur extends Component {
   }
   componentDidMount() {
     const id = this.props.match.params.id;
-    Axios.get(`http://localhost:5000/livreur/ahmed/${id}`, {
+    Axios.get(`/livreur/ahmed/${id}`, {
       withCredentials: true,
     }).then((res) => {
       if (res.data) {
@@ -48,13 +48,9 @@ class Classeditlivreur extends Component {
         phone: phone,
       };
       console.log(data);
-      Axios.patch(
-        `http://localhost:5000/livreur/users/deliveryman/${id}`,
-        data,
-        {
-          withCredentials: true,
-        }
-      ).then((res) => {
+      Axios.patch(`/livreur/users/deliveryman/${id}`, data, {
+        withCredentials: true,
+      }).then((res) => {
         if (res.data.success) {
           alert('Edited successfully');
         }

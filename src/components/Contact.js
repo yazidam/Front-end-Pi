@@ -17,18 +17,16 @@ export default function Contact(props) {
   });
 
   const handleContact = async () => {
-    axios
-      .post('http://localhost:5000/mail', contact, { withCredentials: true })
-      .then((res) => {
-        console.log(res.status);
-        console.log(res);
-        if (res.status === 203) {
-          alert(res.data);
-        }
-        if (res.status === 200) {
-          props.history.push('/homeuser');
-        }
-      });
+    axios.post('/mail', contact, { withCredentials: true }).then((res) => {
+      console.log(res.status);
+      console.log(res);
+      if (res.status === 203) {
+        alert(res.data);
+      }
+      if (res.status === 200) {
+        props.history.push('/homeuser');
+      }
+    });
 
     setContact({
       email: 'wecodeesprit@gmail.com',

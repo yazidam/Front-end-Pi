@@ -14,7 +14,7 @@ function CiruitDeliveryMan() {
         }}
       >
         <MapQuest
-          height={`${window.innerHeight * 0.75}px`}
+          height={`${window.innerHeight * 0.96}px`}
           width={'100%'}
           center={[36.806496, 10.181532]}
           baseLayer={'light'}
@@ -24,7 +24,7 @@ function CiruitDeliveryMan() {
           apiKey={'4NIzTvZz2pqeoBAk5sh1xYokvkJO21A5'}
         />
       </div>
-      <h3>hhhhh</h3>
+      {/* <h3>hhhhh</h3> */}
     </div>
   );
 }

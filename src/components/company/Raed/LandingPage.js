@@ -1,12 +1,11 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
 import ReactPaginate from 'react-paginate';
-import ArchiveVehicule from "./ArchiveVehicule";
-import {Link} from 'react-router-dom';
-
+import ArchiveVehicule from './ArchiveVehicule';
+import { Link } from 'react-router-dom';
 
 class App extends Component {
-   API_ENDPOINT = 'http://localhost:8000/'
+  API_ENDPOINT = 'http://localhost:8000/';
   constructor(props) {
     super(props);
     this.state = {
@@ -15,88 +14,95 @@ class App extends Component {
       perPage: 4,
       currentPage: 0,
       offset: 0,
-      archives : [],
-      userId: this.props.userId.id
-
-
+      archives: [],
+      userId: this.props.userId.id,
     };
     this.handlePageClick = this.handlePageClick.bind(this);
-
   }
   handlePageClick = (e) => {
     const selectedPage = e.selected;
     const offset = selectedPage * this.state.perPage;
 
-    this.setState({
+    this.setState(
+      {
         currentPage: selectedPage,
-        offset: offset
-    }, () => {
-        this.loadMoreData()
+        offset: offset,
+      },
+      () => {
+        this.loadMoreData();
+      }
+    );
+  };
+
+  loadMoreData() {
+    const data = this.state.orgvehicules;
+
+    const slice = data.slice(
+      this.state.offset,
+      this.state.offset + this.state.perPage
+    );
+    this.setState({
+      pageCount: Math.ceil(data.length / this.state.perPage),
+      vehicules: slice,
     });
-
-};
-
-loadMoreData() {
-const data = this.state.orgvehicules;
-
-const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
-this.setState({
-  pageCount: Math.ceil(data.length / this.state.perPage),
-  vehicules:slice
-})
-
-}
+  }
   componentDidMount() {
     this.getVehicules();
   }
 
   getVehicules() {
-    axios.get(`http://localhost:5000/vehicules/getvehicules/${this.state.userId}`, { withCredentials: true }).then(res => {
+    axios
+      .get(`/vehicules/getvehicules/${this.state.userId}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
         console.log(res.data);
-         var tdata = res.data.data;
-         
+        var tdata = res.data.data;
 
-         console.log('data-->'+JSON.stringify(tdata))
-        var slice = tdata.slice(this.state.offset, this.state.offset + this.state.perPage)
+        console.log('data-->' + JSON.stringify(tdata));
+        var slice = tdata.slice(
+          this.state.offset,
+          this.state.offset + this.state.perPage
+        );
         this.setState({
           pageCount: Math.ceil(tdata.length / this.state.perPage),
           orgvehicules: res.data.data,
           vehicules: slice,
-          modele: res.data.data.modele
+          modele: res.data.data.modele,
         });
-        console.log("vehicules: ", this.state.vehicules);
-        console.log("orgvehicules: ", this.state.orgvehicules);
-        console.log("modele: ", this.state.modele);
-
-
-
-      
-    });
+        console.log('vehicules: ', this.state.vehicules);
+        console.log('orgvehicules: ', this.state.orgvehicules);
+        console.log('modele: ', this.state.modele);
+      });
   }
 
   onDelete = (id) => {
-    axios.delete(`http://localhost:5000/vehicules/vehicules/${id}`, { withCredentials: true }).then((res) => {
-      alert( "has been deleted successfully");
-      this.getVehicules();
-    });
+    axios
+      .delete(`/vehicules/vehicules/${id}`, { withCredentials: true })
+      .then((res) => {
+        alert('has been deleted successfully');
+        this.getVehicules();
+      });
   };
 
   filterContent(vehicules, searchTerm) {
     const result = vehicules.filter(
       (vehicule) =>
         vehicule.modele.toLowerCase().includes(searchTerm) ||
-        vehicule.marque.toLowerCase().includes(searchTerm) 
+        vehicule.marque.toLowerCase().includes(searchTerm)
     );
     this.setState({ vehicules: result });
   }
 
   handleTextSearch = (e) => {
     const searchTerm = e.currentTarget.value;
-    axios.get("http://localhost:5000/vehicules/getvehicules", { withCredentials: true }).then((res) => {
-      if (res.data) {
-        this.filterContent(res.data.data, searchTerm);
-      }
-    });
+    axios
+      .get('/vehicules/getvehicules', { withCredentials: true })
+      .then((res) => {
+        if (res.data) {
+          this.filterContent(res.data.data, searchTerm);
+        }
+      });
   };
 
   render() {
@@ -133,17 +139,25 @@ this.setState({
                 <th scope="row">{index}</th>
 
                 <td>
-                  <a href={`http://localhost:5000/vehicules/vehicules/${vehicule._id}`}>{vehicule.modele}</a>
+                  <a href={`/vehicules/vehicules/${vehicule._id}`}>
+                    {vehicule.modele}
+                  </a>
                 </td>
                 <td>{vehicule.marque}</td>
-                <td><img
-              src={`http://localhost:5000/${vehicule.image}`}
-              alt={vehicule.image}
-              width="200" height="200"
-            /></td>
+                <td>
+                  <img
+                    src={`/${vehicule.image}`}
+                    alt={vehicule.image}
+                    width="200"
+                    height="200"
+                  />
+                </td>
 
                 <td>
-                  <a className="btn btn-warning" href={`/homeuser/company/vehicle/edit/${vehicule._id}`}>
+                  <a
+                    className="btn btn-warning"
+                    href={`/homeuser/company/vehicle/edit/${vehicule._id}`}
+                  >
                     <i className="fas fa-edit"></i>&nbsp;Edit
                   </a>
                   &nbsp;
@@ -154,7 +168,10 @@ this.setState({
                   >
                     <i className="far fa-trash-alt"></i>&nbsp;Delete
                   </a>
-                  <a className="btn btn-warning" href={`/homeuser/company/vehicle/details/${vehicule._id}`}>
+                  <a
+                    className="btn btn-warning"
+                    href={`/homeuser/company/vehicle/details/${vehicule._id}`}
+                  >
                     <i className="fas fa-edit"></i>&nbsp;Details
                   </a>
                 </td>
@@ -167,24 +184,20 @@ this.setState({
         </Link>
 
         <ReactPaginate
-                    previousLabel={"prev"}
-                    nextLabel={"next"}
-                    breakLabel={"..."}
-                    breakClassName={"break-me"}
-                    pageCount={this.state.pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={this.handlePageClick}
-                    containerClassName={"pagination"}
-                    subContainerClassName={"pages pagination"}
-                    activeClassName={"active"}/>
-
-
+          previousLabel={'prev'}
+          nextLabel={'next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={this.state.pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={this.handlePageClick}
+          containerClassName={'pagination'}
+          subContainerClassName={'pages pagination'}
+          activeClassName={'active'}
+        />
       </div>
-
-
     );
-
   }
 }
 

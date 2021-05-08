@@ -1,14 +1,13 @@
-import React, { Component } from "react";
-import Axios from "axios";
+import React, { Component } from 'react';
+import Axios from 'axios';
 class CreateVehicule extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modele: "",
-      marque: "",
-      image:"",
-      userId: this.props.userId.id
-      
+      modele: '',
+      marque: '',
+      image: '',
+      userId: this.props.userId.id,
     };
   }
   handleInputChange = (e) => {
@@ -18,37 +17,35 @@ class CreateVehicule extends Component {
       [name]: value,
     });
   };
-  handleFileChange= (e) => {
+  handleFileChange = (e) => {
     this.setState({
       ...this.state,
       image: e.target.files[0],
     });
   };
 
-  
-
   onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-        formData.append('modele', this.state.modele);
-        formData.append('marque', this.state.marque);
-        formData.append('image', this.state.image);
-        formData.append('userId', this.state.userId);
-   
-      Axios.post("http://localhost:5000/vehicules/vehicules",formData,{ withCredentials: true }).then((res) => {
-        if (res.data.success) {
-          alert("Added");
-          console.log('formdataaaa:', formData)
+    formData.append('modele', this.state.modele);
+    formData.append('marque', this.state.marque);
+    formData.append('image', this.state.image);
+    formData.append('userId', this.state.userId);
 
-          this.setState({ modele: "", marque: "", image:"" });
-        }
-      });
-      
-    
+    Axios.post('/vehicules/vehicules', formData, {
+      withCredentials: true,
+    }).then((res) => {
+      if (res.data.success) {
+        alert('Added');
+        console.log('formdataaaa:', formData);
+
+        this.setState({ modele: '', marque: '', image: '' });
+      }
+    });
   };
 
   render() {
-    console.log('useeeeeeeeeeeeeer:', this.state.userId)
+    console.log('useeeeeeeeeeeeeer:', this.state.userId);
 
     return (
       <div className="col-md-10 mt-3 mx-auto">
@@ -64,7 +61,6 @@ class CreateVehicule extends Component {
               value={this.state.modele}
               onChange={this.handleInputChange}
             />
-           
           </div>
 
           <div className="form-group">
@@ -77,7 +73,6 @@ class CreateVehicule extends Component {
               value={this.state.marque}
               onChange={this.handleInputChange}
             />
-           
           </div>
           <div className="form-group">
             <label>Image</label>
@@ -87,9 +82,7 @@ class CreateVehicule extends Component {
               name="image"
               onChange={this.handleFileChange}
             />
-           
           </div>
-         
 
           <button
             className="btn btn-success"

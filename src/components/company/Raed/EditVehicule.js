@@ -1,20 +1,17 @@
-import React, { Component } from "react";
-import Axios from "axios";
-import { withRouter } from "react-router";
-
-
+import React, { Component } from 'react';
+import Axios from 'axios';
+import { withRouter } from 'react-router';
 
 class EditVehicule extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modele: "",
-      marque: "",
+      modele: '',
+      marque: '',
       //image:""
-      
     };
   }
- 
+
   handleInputChange = (e) => {
     const { name, value } = e.target;
     this.setState({
@@ -22,7 +19,7 @@ class EditVehicule extends Component {
       [name]: value,
     });
   };
-  handleFileChange= (e) => {
+  handleFileChange = (e) => {
     this.setState({
       ...this.state,
       image: e.target.files[0],
@@ -30,39 +27,34 @@ class EditVehicule extends Component {
   };
   componentDidMount() {
     const id = this.props.match.params.id;
-    Axios.get(`http://localhost:5000/vehicules/vehicules/${id}`, { withCredentials: true }).then((res) => {
+    Axios.get(`/vehicules/vehicules/${id}`, { withCredentials: true }).then(
+      (res) => {
         this.setState({
           modele: res.data.data.modele,
           marque: res.data.data.marque,
-          image: res.data.data.image
+          image: res.data.data.image,
         });
-      
-    });
+      }
+    );
   }
-
-  
-  
 
   onSubmit = (e) => {
     e.preventDefault();
     const id = this.props.match.params.id;
     const formData = new FormData();
-        formData.append('modele', this.state.modele);
-        formData.append('marque', this.state.marque);
-        formData.append('image', this.state.image);
-      Axios.patch(`http://localhost:5000/vehicules/vehicules/${id}`, formData, { withCredentials: true }).then((res) => {
-        if (res.data.success) {
-          alert("Edited successfully");
-          this.setState({ modele: "", marque: "" });
-
-        }
-      });
-    
+    formData.append('modele', this.state.modele);
+    formData.append('marque', this.state.marque);
+    formData.append('image', this.state.image);
+    Axios.patch(`/vehicules/vehicules/${id}`, formData, {
+      withCredentials: true,
+    }).then((res) => {
+      if (res.data.success) {
+        alert('Edited successfully');
+        this.setState({ modele: '', marque: '' });
+      }
+    });
   };
 
-  
-
-     
   render() {
     return (
       <div className="col-md-10 mt-3 mx-auto">
@@ -78,7 +70,6 @@ class EditVehicule extends Component {
               value={this.state.modele}
               onChange={this.handleInputChange}
             />
-           
           </div>
 
           <div className="form-group">
@@ -91,7 +82,6 @@ class EditVehicule extends Component {
               value={this.state.marque}
               onChange={this.handleInputChange}
             />
-           
           </div>
           <div className="form-group">
             <label>Image</label>
@@ -101,10 +91,7 @@ class EditVehicule extends Component {
               name="image"
               onChange={this.handleFileChange}
             />
-           
           </div>
-          
-         
 
           <button
             className="btn btn-success"
@@ -119,4 +106,4 @@ class EditVehicule extends Component {
     );
   }
 }
-export default withRouter(EditVehicule)
+export default withRouter(EditVehicule);

@@ -15,23 +15,20 @@ export default function DeliveryMan(props) {
   useEffect(async () => {
     if (Cookies.get('connect.sid')) {
     } else {
-      await axios
-        .get('http://localhost:5000/auth/logout', { withCredentials: true })
-        .then((res) => {
-          console.log(res);
-          localStorage.removeItem('userInfo');
-          dispatch(loginUserfind(res.data));
-          props.history.push('/');
-        });
+      await axios.get('/auth/logout', { withCredentials: true }).then((res) => {
+        console.log(res);
+        localStorage.removeItem('userInfo');
+        dispatch(loginUserfind(res.data));
+        props.history.push('/');
+      });
     }
   }, [Cookies.get()]);
 
   useEffect(() => {
     axios
-      .get(
-        `http://localhost:5000/livreur/users/deliveryman/${connectUser.id}`,
-        { withCredentials: true }
-      )
+      .get(`/livreur/users/deliveryman/${connectUser.id}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setLivreur(res.data.data);
         // setLivreur1(livreur.livreur.username);
@@ -48,7 +45,7 @@ export default function DeliveryMan(props) {
         console.log(error);
       });
   }, []);
-//  console.log('bb ', livreur.props.username);
+  //  console.log('bb ', livreur.props.username);
 
   return (
     <div>

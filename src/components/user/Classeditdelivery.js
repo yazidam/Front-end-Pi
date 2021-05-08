@@ -18,7 +18,7 @@ export default class Classeditdelivery extends Component {
   };
   componentDidMount() {
     const id = this.props.match.params.id;
-    Axios.get(`http://localhost:5000/delivery/passdelivery/${id}`, {
+    Axios.get(`/delivery/passdelivery/${id}`, {
       withCredentials: true,
     }).then((res) => {
       if (res.data) {
@@ -48,7 +48,7 @@ export default class Classeditdelivery extends Component {
         to: to,
       };
       console.log(data);
-      Axios.patch(`http://localhost:5000/delivery/passdelivery/${id}`, data, {
+      Axios.patch(`/delivery/passdelivery/${id}`, data, {
         withCredentials: true,
       }).then((res) => {
         if (res.data.success) {

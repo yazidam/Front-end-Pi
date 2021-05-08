@@ -11,7 +11,7 @@ class classdetails extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     axios
-      .get(`http://localhost:5000/livreur/ahmed/${id}`, {
+      .get(`/livreur/ahmed/${id}`, {
         withCredentials: true,
       })
       .then((res) => {

@@ -17,14 +17,12 @@ function Statsdeliyers(props) {
   useEffect(async () => {
     if (Cookies.get('connect.sid')) {
     } else {
-      await axios
-        .get('http://localhost:5000/auth/logout', { withCredentials: true })
-        .then((res) => {
-          console.log(res);
-          localStorage.removeItem('userInfo');
-          dispatch(loginUserfind(res.data));
-          props.history.push('/');
-        });
+      await axios.get('/auth/logout', { withCredentials: true }).then((res) => {
+        console.log(res);
+        localStorage.removeItem('userInfo');
+        dispatch(loginUserfind(res.data));
+        props.history.push('/');
+      });
     }
   }, [Cookies.get()]);
 
@@ -33,7 +31,7 @@ function Statsdeliyers(props) {
     let nombre = [];
 
     axios
-      .get('http://localhost:5000/delivery/stat_all_deliverys', {
+      .get('/delivery/stat_all_deliverys', {
         withCredentials: true,
       })
       .then((res) => {

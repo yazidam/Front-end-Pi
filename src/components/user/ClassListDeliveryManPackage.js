@@ -1,324 +1,3 @@
-// import React, { Component } from 'react';
-// import { withRouter } from 'react-router';
-// import axios from 'axios';
-// import MapQuest from './Map/MapQuest';
-
-// class ClassListDeliveryManPackage extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       devv: [],
-//       list:[],
-//       listto:[],
-//       raed: [],
-//       ahmed:[],
-//       posfrom: '',
-//       posfrom1: '',
-//       tab:[]
-
-//     };
-//   }
-//    componentDidMount() {
-//     this.getDELVERYY();
-//   }
-
-//   getDELVERYY = () => {
-//     axios.get(`http://localhost:5000/adminpassdelivery/all/deliveryman/package/${this.props.con.username}`, { withCredentials: true }).then((res) => {
-//       this.setState({
-//         devv: res.data.data,
-//       });
-
-//       axios.get(`http://localhost:5000/adminpassdelivery/all/deliveryman/package/from/${this.props.con.username}`, { withCredentials: true }).then((res) => {
-//         this.setState({
-//           list: res.data.data,
-//           count: res.data.data.length,
-//         });
-//        // console.log('list  : ', this.state.list);
-//         axios.get(`http://localhost:5000/adminpassdelivery/all/deliveryman/package/to/${this.props.con.username}`, { withCredentials: true }).then((res) => {
-//           this.setState({
-//             listto: res.data.data,
-//             count: res.data.data.length,
-//           });
-//           this.state.list.map((l) => {
-//             axios
-//               .get(`https://geocode.search.hereapi.com/v1/geocode?q=${l.from}&apiKey=cGLlttKCzeHqocL4Oby4wq8vKA0wqOAsKodDDilDWGY`, { withCredentials: true })
-//               .then((res, err) => {
-//                 this.setState({
-//                   posfrom: res.data.items[0].position.lat,
-//                   posfrom1: res.data.items[0].position.lng,
-//                   posF: res.data.items[0].position,
-//                 });
-//                 this.setState((prevState) => ({
-//                   raed: [...prevState.raed, this.state.posF],
-//                 }));
-//               });
-//           });
-
-//           this.state.listto.map((t) => {
-//             axios
-//               .get(`https://geocode.search.hereapi.com/v1/geocode?q=${t.to}&apiKey=cGLlttKCzeHqocL4Oby4wq8vKA0wqOAsKodDDilDWGY`, { withCredentials: true })
-//               .then((res, err) => {
-//                 this.setState({
-//                   posto: res.data.items[0].position.lat,
-//                   posto1: res.data.items[0].position.lng,
-//                   posT: res.data.items[0].position,
-//                 });
-//                 this.setState((prevState) => ({
-//                   ahmed: [...prevState.ahmed, this.state.posT],
-//                 }));
-//               });
-//           });
-//         });
-//       });
-
-//     });
-//   };
-//   render() {
-//   //  console.log('ahmed  : ', this.state.ahmed);
-//     //console.log('raed  : ', this.state.raed);
-
-//    /* if(!this.state.ahmed.length != this.state.count ) {
-//       return null;
-
-//     }
-
-//     if(!this.state.raed.length != this.state.count ) {
-//       return null;
-
-//     }*/
-
-//     return (
-//       <>
-//         <div className="container">
-//           <div className="row">
-//             <div className="col-lg-9 mt-2 mb-2"></div>
-//             <div className="col-lg-3 mt-2 mb-2">
-//               <input
-//                 className="form-control"
-//                 type="search"
-//                 placeholder="Search"
-//                 name="searchTerm"
-//                 onChange={this.handleTextSearch}
-//               ></input>
-//             </div>
-//           </div>
-//           <table className="table table-dark table-striped">
-//             <thead>
-//               <tr>
-//                 <th scope="col">NUM</th>
-//                 <th scope="col">username</th>
-//                 <th scope="col">email</th>
-//                 <th scope="col">adresse</th>
-//                 <th scope="col">phone</th>
-//                 <th scope="col">description</th>
-//                 <th scope="col">from</th>
-//                 <th scope="col">to</th>
-//                 <th scope="col">deliverymanId</th>
-//                 <th scope="col">vehiculeID</th>
-//                 <th scope="col">Action</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {this.state.devv.map((vk, index, key) => (
-//                 <tr>
-//                   <th scope="row">{index}</th>
-//                   <td>
-//                     <td>{vk.username}</td>
-//                   </td>
-//                   <td>{vk.email}</td>
-//                   <td>{vk.adresse}</td>
-//                   <td>{vk.phone}</td>
-
-//                   <td>{vk.description}</td>
-//                   <td>{vk.from}</td>
-//                   <td>{vk.to}</td>
-//                   <td>{vk.deliverymanId}</td>
-//                   <td>{vk.vehiculeID}</td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-//           <div
-//             style={{
-//               marginTop: '20px',
-//               display: 'flex',
-//               justifyContent: 'center',
-//             }}
-//           >
-//           </div>
-//         </div>
-//         <MapQuest
-//           height={`${window.innerHeight * 0.89}px`}
-//           width={'100%'}
-//           center={[40.015831, -105.27927]}
-//           baseLayer={'light'}
-//           zoom={10}
-//           pitch={60}
-//           bearing={0}
-//           apiKey={'NCw2anAenpkSgB5XlyjE030OGd7aXdP0'}
-//           name="raed"
-//           Ahmed={this.state.ahmed}
-//           Raed={this.state.raed}
-//           con ={this.props.con}
-//           Count = {this.state.count}
-
-//         />
-
-//       </>
-//     );
-//   }
-// }
-// export default withRouter(ClassListDeliveryManPackage);
-// import React, { Component } from 'react';
-// import { withRouter } from 'react-router';
-// import axios from 'axios';
-// import MapQuest from './Map/MapQuest';
-
-// class ClassListDeliveryManPackage extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       devv: [],
-//       // limit: 2,
-//       // skip: 0,
-//     };
-//   }
-//   getlist_delivery_manèpackage() {
-//     axios
-//       .get(
-//         `http://localhost:5000/adminpassdelivery/all/deliveryman/package/${this.props.con.username}`,
-//         {
-//           withCredentials: true,
-//         }
-//       )
-//       .then((res) => {
-//         if (res.data) {
-//           this.setState({
-//             devv: res.data.data,
-//           });
-//         }
-//         console.log('dev :', this.state.devv);
-//       });
-//     //  this.setState({ devv: intermediaire.data.data });
-//   }
-
-//   componentDidMount() {
-//     this.getlist_delivery_manèpackage();
-//     console.log('dev :', this.state.devv);
-//   }
-//   render() {
-//     var tab = this.state.devv;
-//     return (
-//       <>
-//         <div className="container">
-//           <div className="row">
-//             <div className="col-lg-9 mt-2 mb-2"></div>
-//             <div className="col-lg-3 mt-2 mb-2">
-//               <input
-//                 className="form-control"
-//                 type="search"
-//                 placeholder="Search"
-//                 name="searchTerm"
-//                 onChange={this.handleTextSearch}
-//               ></input>
-//             </div>
-//           </div>
-//           <table className="table table-dark table-striped">
-//             <thead>
-//               <tr>
-//                 <th scope="col">NUM</th>
-//                 <th scope="col">username</th>
-//                 <th scope="col">email</th>
-//                 <th scope="col">adresse</th>
-//                 <th scope="col">phone</th>
-//                 <th scope="col">description</th>
-//                 <th scope="col">from</th>
-//                 <th scope="col">to</th>
-//                 <th scope="col">deliverymanId</th>
-//                 <th scope="col">vehiculeID</th>
-//                 <th scope="col">Action</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {this.state.devv.map((vk, index, key) => (
-//                 <tr>
-//                   <th scope="row">{index}</th>
-//                   <td>
-//                     <td>{vk.username}</td>
-//                   </td>
-//                   <td>{vk.email}</td>
-//                   <td>{vk.adresse}</td>
-//                   <td>{vk.phone}</td>
-
-//                   <td>{vk.description}</td>
-//                   <td>{vk.from}</td>
-//                   <td>{vk.to}</td>
-//                   <td>{vk.deliverymanId}</td>
-//                   <td>{vk.vehiculeID}</td>
-
-//                   <td>
-//                     {/* <Link
-//                     className="icon mx-3"
-//                     to={`/homeuser/user/makedeliveryuser/${vk._id}`}
-//                   >
-//                     <i className="fa fa-pencil" style={{ color: 'green' }}></i>
-//                   </Link> */}
-
-//                     {/* <span className="icon" onClick={() => this.onDelete(vk._id)}>
-//                     <i className="fa fa-trash" style={{ color: 'red' }}></i>
-//                   </span> */}
-//                   </td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-
-//           {/* <Link
-//           to="/homeuser/user/makedeliveryuser"
-//           className="bot btn btn-secondary"
-//         >
-//           Add Delivery
-//         </Link> */}
-//           <div
-//             style={{
-//               marginTop: '20px',
-//               display: 'flex',
-//               justifyContent: 'center',
-//             }}
-//           >
-//             {/* <ReactPaginate
-//             previousLabel={'prev'}
-//             nextLabel={'next'}
-//             breakLabel={'...'}
-//             breakClassName={'break-me'}
-//             pageCount={this.state.pageCount}
-//             marginPagesDisplayed={2}
-//             pageRangeDisplayed={5}
-//             onPageChange={this.handlePageClick}
-//             containerClassName={'pagination'}
-//             subContainerClassName={'pages pagination'}
-//             activeClassName={'active'}
-//           /> */}
-//           </div>
-//         </div>
-//         <MapQuest
-//           height={`${window.innerHeight * 0.89}px`}
-//           width={'100%'}
-//           center={[40.015831, -105.27927]}
-//           baseLayer={'light'}
-//           zoom={10}
-//           pitch={60}
-//           bearing={0}
-//           apiKey={'2NmKbEIILnTEItWHHYldG7iA0TLPkG6g'}
-//           name="raed"
-//           con1={this.props.con}
-//           //Raed={this.state.devv}
-//         />
-//       </>
-//     );
-//   }
-// }
-// export default withRouter(ClassListDeliveryManPackage);
 //*******************************************************hethi bel functoin////////////////////////////// */
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
@@ -380,14 +59,12 @@ export default function ClassListDeliveryManPackage(props) {
   useEffect(async () => {
     if (Cookies.get('connect.sid')) {
     } else {
-      await axios
-        .get('http://localhost:5000/auth/logout', { withCredentials: true })
-        .then((res) => {
-          console.log(res);
-          localStorage.removeItem('userInfo');
-          dispatch(loginUserfind(res.data));
-          props.history.push('/');
-        });
+      await axios.get('/auth/logout', { withCredentials: true }).then((res) => {
+        console.log(res);
+        localStorage.removeItem('userInfo');
+        dispatch(loginUserfind(res.data));
+        props.history.push('/');
+      });
     }
   }, [Cookies.get()]);
 
@@ -396,7 +73,7 @@ export default function ClassListDeliveryManPackage(props) {
     //history.push('/delivery');
     axios
       .delete(
-        `http://localhost:5000/circuit/gotoarchive/${_id}`,
+        `/circuit/gotoarchive/${_id}`,
 
         { withCredentials: true }
       )
@@ -420,7 +97,7 @@ export default function ClassListDeliveryManPackage(props) {
       },
     ]);
     const midell = await axios.get(
-      `https://geocode.search.hereapi.com/v1/geocode?q=${itemname}&apiKey=voyLGbvsuUxxWR3OuiNI_bR7toq3aKyq9J5DYllGVBM`,
+      `https://geocode.search.hereapi.com/v1/geocode?q=${itemname}&apiKey=wxibHI6_dpOa-llEWT7lgZBJUCXvcVtpmYDHX333cIk`,
       { withCredentials: true }
     );
     setPoints([...points, midell.data.items[0].position]);
@@ -431,14 +108,14 @@ export default function ClassListDeliveryManPackage(props) {
 
   const aff = async () => {
     const startpossition = await axios.get(
-      `https://geocode.search.hereapi.com/v1/geocode?q=${start}&apiKey=voyLGbvsuUxxWR3OuiNI_bR7toq3aKyq9J5DYllGVBM`,
+      `https://geocode.search.hereapi.com/v1/geocode?q=${start}&apiKey=wxibHI6_dpOa-llEWT7lgZBJUCXvcVtpmYDHX333cIk`,
       { withCredentials: true }
     );
     const route = {
       start: startpossition.data.items[0].position,
       points: points,
     };
-    const x = await axios.post('http://localhost:5000/getpoints', route, {
+    const x = await axios.post('/getpoints', route, {
       withCredentials: true,
     });
     const tr = x.data.waypoints;
@@ -467,7 +144,7 @@ export default function ClassListDeliveryManPackage(props) {
   useEffect(async () => {
     const resulta = await axios
       .get(
-        `http://localhost:5000/adminpassdelivery/all/deliveryman/package/${connectUser.username}`,
+        `/adminpassdelivery/all/deliveryman/package/${connectUser.username}`,
         { withCredentials: true }
       )
       .then((resulta) => {
@@ -488,7 +165,7 @@ export default function ClassListDeliveryManPackage(props) {
       });
     axios
       .get(
-        `http://localhost:5000/adminpassdelivery/all/deliveryman/package/${connectUser.username}`,
+        `/adminpassdelivery/all/deliveryman/package/${connectUser.username}`,
         { withCredentials: true }
       )
       .then((res) => {
@@ -498,7 +175,7 @@ export default function ClassListDeliveryManPackage(props) {
 
         axios
           .get(
-            `http://localhost:5000/adminpassdelivery/all/deliveryman/package/from/${connectUser.username}`,
+            `/adminpassdelivery/all/deliveryman/package/from/${connectUser.username}`,
             { withCredentials: true }
           )
           .then((res) => {
@@ -509,7 +186,7 @@ export default function ClassListDeliveryManPackage(props) {
             console.log('list  : ', res.data.data);
             axios
               .get(
-                `http://localhost:5000/adminpassdelivery/all/deliveryman/package/to/${connectUser.username}`,
+                `/adminpassdelivery/all/deliveryman/package/to/${connectUser.username}`,
                 { withCredentials: true }
               )
               .then((res) => {
@@ -521,7 +198,7 @@ export default function ClassListDeliveryManPackage(props) {
                 // list.map((l) => {
                 //   axios
                 //     .get(
-                //       `https://geocode.search.hereapi.com/v1/geocode?q=${l.from}&apiKey=voyLGbvsuUxxWR3OuiNI_bR7toq3aKyq9J5DYllGVBM`,
+                //       `https://geocode.search.hereapi.com/v1/geocode?q=${l.from}&apiKey=wxibHI6_dpOa-llEWT7lgZBJUCXvcVtpmYDHX333cIk`,
                 //       { withCredentials: true }
                 //     )
                 //     .then((res, err) => {
@@ -551,7 +228,7 @@ export default function ClassListDeliveryManPackage(props) {
                 listto.map((t) => {
                   axios
                     .get(
-                      `https://geocode.search.hereapi.com/v1/geocode?q=${t.to}&apiKey=voyLGbvsuUxxWR3OuiNI_bR7toq3aKyq9J5DYllGVBM`,
+                      `https://geocode.search.hereapi.com/v1/geocode?q=${t.to}&apiKey=wxibHI6_dpOa-llEWT7lgZBJUCXvcVtpmYDHX333cIk`,
                       { withCredentials: true }
                     )
                     .then((res, err) => {
@@ -592,7 +269,7 @@ export default function ClassListDeliveryManPackage(props) {
     list.map((l) => {
       axios
         .get(
-          `https://geocode.search.hereapi.com/v1/geocode?q=${l.from}&apiKey=voyLGbvsuUxxWR3OuiNI_bR7toq3aKyq9J5DYllGVBM`,
+          `https://geocode.search.hereapi.com/v1/geocode?q=${l.from}&apiKey=wxibHI6_dpOa-llEWT7lgZBJUCXvcVtpmYDHX333cIk`,
           { withCredentials: true }
         )
         .then((res, err) => {
@@ -701,39 +378,9 @@ export default function ClassListDeliveryManPackage(props) {
             display: 'flex',
             justifyContent: 'center',
           }}
-        >
-          {/* <ReactPaginate
-            previousLabel={'prev'}
-            nextLabel={'next'}
-            breakLabel={'...'}
-            breakClassName={'break-me'}
-            pageCount={this.state.pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={this.handlePageClick}
-            containerClassName={'pagination'}
-            subContainerClassName={'pages pagination'}
-            activeClassName={'active'}
-          /> */}
-        </div>
+        ></div>
       </div>
 
-      {/* <MapQuest
-        height={`${window.innerHeight * 0.89}px`}
-        width={'100%'}
-        center={[40.015831, -105.27927]}
-        baseLayer={'light'}
-        zoom={10}
-        pitch={60}
-        bearing={0}
-        apiKey={'	3h6UEd8JLoeJGGSaCdHzuBBCkoRFjLYf'}
-        name="raed"
-        // Raed={this.state.raed}
-        // Ahmed={this.state.ahmed}
-        // Count={this.state.count}
-        // // {...props}
-        // con={this.props.con}
-      /> */}
       <div className="ll">
         <input
           className="putt"
@@ -826,7 +473,7 @@ export default function ClassListDeliveryManPackage(props) {
 //   getDELVERYY = () => {
 //     axios
 //       .get(
-//         `http://localhost:5000/adminpassdelivery/all/deliveryman/package/${this.props.con.username}`,
+//         `/adminpassdelivery/all/deliveryman/package/${this.props.con.username}`,
 //         { withCredentials: true }
 //       )
 //       .then((res) => {
@@ -836,7 +483,7 @@ export default function ClassListDeliveryManPackage(props) {
 
 //         axios
 //           .get(
-//             `http://localhost:5000/adminpassdelivery/all/deliveryman/package/from/${this.props.con.username}`,
+//             `/adminpassdelivery/all/deliveryman/package/from/${this.props.con.username}`,
 //             { withCredentials: true }
 //           )
 //           .then((res) => {
@@ -847,7 +494,7 @@ export default function ClassListDeliveryManPackage(props) {
 //             console.log('list  : ', this.state.list);
 //             axios
 //               .get(
-//                 `http://localhost:5000/adminpassdelivery/all/deliveryman/package/to/${this.props.con.username}`,
+//                 `/adminpassdelivery/all/deliveryman/package/to/${this.props.con.username}`,
 //                 { withCredentials: true }
 //               )
 //               .then((res) => {

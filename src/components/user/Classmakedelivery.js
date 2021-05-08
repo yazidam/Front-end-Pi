@@ -80,7 +80,7 @@ class Classmakedelivery extends Component {
       console.log(data);
       axios
         .post(
-          'http://localhost:5000/delivery/add',
+          '/delivery/add',
           data,
 
           {

@@ -15,7 +15,7 @@ class Classlistdeliverycompany extends Component {
   }
   getDELVERYCOMPANY() {
     axios
-      .get(`http://localhost:5000/livreur/users/roledeliveryman`, {
+      .get(`/livreur/users/roledeliveryman`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -39,7 +39,7 @@ class Classlistdeliverycompany extends Component {
   handleTextSearch = (e) => {
     const searchTerm = e.currentTarget.value;
     axios
-      .get('http://localhost:5000/livreur/users/roledeliveryman', {
+      .get('/livreur/users/roledeliveryman', {
         withCredentials: true,
       })
       .then((res) => {

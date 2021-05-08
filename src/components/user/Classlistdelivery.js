@@ -13,7 +13,7 @@ class Classlistdelivery extends Component {
       // limit: 2,
       // skip: 0,
       pagtable: [],
-      perPage: 4,
+      perPage: 1,
       currentPage: 0,
       offset: 0,
     };
@@ -23,7 +23,7 @@ class Classlistdelivery extends Component {
   }
   onDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/delivery/passdelivery/${id}`, {
+      .delete(`/delivery/passdelivery/${id}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -32,7 +32,7 @@ class Classlistdelivery extends Component {
       });
     // axios
     //   .delete(
-    //     `http://localhost:5000/adminpassdelivery/deliverymanpackage/${id}`,
+    //     `/adminpassdelivery/deliverymanpackage/${id}`,
     //     {
     //       withCredentials: true,
     //     }
@@ -44,7 +44,7 @@ class Classlistdelivery extends Component {
   };
   getDELVERY(id) {
     axios
-      .get(`http://localhost:5000/delivery/all/${this.props.con.id}`, {
+      .get(`/delivery/all/${this.props.con.id}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -79,13 +79,11 @@ class Classlistdelivery extends Component {
   }
   handleTextSearch = (e) => {
     const searchTerm = e.currentTarget.value;
-    axios
-      .get('http://localhost:5000/delivery/all', { withCredentials: true })
-      .then((res) => {
-        if (res.data) {
-          this.filterindata(res.data.data, searchTerm);
-        }
-      });
+    axios.get('/delivery/all', { withCredentials: true }).then((res) => {
+      if (res.data) {
+        this.filterindata(res.data.data, searchTerm);
+      }
+    });
   };
 
   handlePageClick = (e) => {

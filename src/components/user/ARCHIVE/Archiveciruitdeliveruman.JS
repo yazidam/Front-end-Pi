@@ -21,12 +21,9 @@ class Archiveciruitdeliveruman extends Component {
   }
   getDELVERY() {
     axios
-      .get(
-        `http://localhost:5000/circuit/getarchives/${this.props.con.username}`,
-        {
-          withCredentials: true,
-        }
-      )
+      .get(`/circuit/getarchives/${this.props.con.username}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.data) {
           this.setState({
@@ -40,12 +37,9 @@ class Archiveciruitdeliveruman extends Component {
 
   onDelete = (id) => {
     axios
-      .delete(
-        `http://localhost:5000/circuit/delete_ciruit_from_archive/${id}`,
-        {
-          withCredentials: true,
-        }
-      )
+      .delete(`/circuit/delete_ciruit_from_archive/${id}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         alert(' has been deleted successfully');
         this.getDELVERY();
