@@ -5,7 +5,7 @@ import ArchiveVehicule from './ArchiveVehicule';
 import { Link } from 'react-router-dom';
 
 class App extends Component {
-  API_ENDPOINT = 'http://localhost:8000/';
+  // API_ENDPOINT = 'http://localhost:8000/';
   constructor(props) {
     super(props);
     this.state = {

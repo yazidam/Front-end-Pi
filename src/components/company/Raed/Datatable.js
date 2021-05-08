@@ -7,7 +7,6 @@ const Datatable = (props) => {
     modele: '',
     marque: '',
     image: '',
-    
   });
 
   //const [test, setTest] = useState("")
@@ -18,46 +17,43 @@ const Datatable = (props) => {
     event.preventDefault();
     window.location.reload();
     //history.push('/delivery');
-    axios
-      .delete(`http://localhost:8000/vehicules/${props.vk._id}`)
-      .then((res) => {
-        console.log(res);
+    axios.delete(`/vehicules/${props.vk._id}`).then((res) => {
+      console.log(res);
 
-        setDataVehicule(res.data.data);
-        console.log(res.data);
-      });
+      setDataVehicule(res.data.data);
+      console.log(res.data);
+    });
   };
 
   return (
-    
-          <tr>
-            <td>
-              <a href={`http://localhost:8000/vehicules/${props.vk._id}`}>{props.vk.modele}</a>
-            </td>
-            <td>{props.vk.marque}</td>
-            <td><img
-          src={`http://localhost:8000/${props.vk.image}`}
+    <tr>
+      <td>
+        <a href={`/vehicules/${props.vk._id}`}>{props.vk.modele}</a>
+      </td>
+      <td>{props.vk.marque}</td>
+      <td>
+        <img
+          src={`/${props.vk.image}`}
           alt={props.vk.image}
-          width="200" height="200"
-        /></td>
+          width="200"
+          height="200"
+        />
+      </td>
 
-            <td>
-              <a className="btn btn-warning" href={`/edit/${props.vk._id}`}>
-                <i className="fas fa-edit"></i>&nbsp;Edit
-              </a>
-              &nbsp;
-              <a className="btn btn-danger" href="#" onClick={handleSubmit}>
-                <i className="fas fa-times-circle"></i> Delete
-              </a>
-              <a className="btn btn-warning" href={`/details/${props.vk._id}`}>
-                <i className="fas fa-edit"></i>&nbsp;Details
-              </a>
-            </td>
-          </tr>
-         
-    
-         
+      <td>
+        <a className="btn btn-warning" href={`/edit/${props.vk._id}`}>
+          <i className="fas fa-edit"></i>&nbsp;Edit
+        </a>
+        &nbsp;
+        <a className="btn btn-danger" href="#" onClick={handleSubmit}>
+          <i className="fas fa-times-circle"></i> Delete
+        </a>
+        <a className="btn btn-warning" href={`/details/${props.vk._id}`}>
+          <i className="fas fa-edit"></i>&nbsp;Details
+        </a>
+      </td>
+    </tr>
   );
-}
+};
 
 export default Datatable;

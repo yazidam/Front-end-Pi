@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 
-
 class ArchiveVehicule extends Component {
-   API_ENDPOINT = 'http://localhost:8000/'
+  // API_ENDPOINT = '/'
   constructor(props) {
     super(props);
     this.state = {
@@ -13,67 +12,67 @@ class ArchiveVehicule extends Component {
       perPage: 4,
       currentPage: 0,
       offset: 0,
-      archives : []
-
+      archives: [],
     };
     this.handlePageClick = this.handlePageClick.bind(this);
-
   }
   handlePageClick = (e) => {
     const selectedPage = e.selected;
     const offset = selectedPage * this.state.perPage;
 
-    this.setState({
+    this.setState(
+      {
         currentPage: selectedPage,
-        offset: offset
-    }, () => {
-        this.loadMoreData()
+        offset: offset,
+      },
+      () => {
+        this.loadMoreData();
+      }
+    );
+  };
+
+  loadMoreData() {
+    const data = this.state.orgvehicules;
+
+    const slice = data.slice(
+      this.state.offset,
+      this.state.offset + this.state.perPage
+    );
+    this.setState({
+      pageCount: Math.ceil(data.length / this.state.perPage),
+      vehicules: slice,
     });
-
-};
-
-loadMoreData() {
-const data = this.state.orgvehicules;
-
-const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
-this.setState({
-  pageCount: Math.ceil(data.length / this.state.perPage),
-  vehicules:slice
-})
-
-}
+  }
   componentDidMount() {
     this.getVehicules();
   }
 
   getVehicules() {
-    axios.get("http://localhost:8000/getarchives").then(res => {
-        console.log(res.data);
-         var tdata = res.data.data;
-         
+    axios.get('/getarchives').then((res) => {
+      console.log(res.data);
+      var tdata = res.data.data;
 
-         console.log('data-->'+JSON.stringify(tdata))
-        var slice = tdata.slice(this.state.offset, this.state.offset + this.state.perPage)
-        this.setState({
-          pageCount: Math.ceil(tdata.length / this.state.perPage),
-          orgvehicules: res.data.data,
-          vehicules: slice,
-          modele: res.data.data.modele
-        });
-        console.log("vehicules: ", this.state.vehicules);
-        console.log("orgvehicules: ", this.state.orgvehicules);
-        console.log("modele: ", this.state.modele);
-
-
-
-      
+      console.log('data-->' + JSON.stringify(tdata));
+      var slice = tdata.slice(
+        this.state.offset,
+        this.state.offset + this.state.perPage
+      );
+      this.setState({
+        pageCount: Math.ceil(tdata.length / this.state.perPage),
+        orgvehicules: res.data.data,
+        vehicules: slice,
+        modele: res.data.data.modele,
+      });
+      console.log('vehicules: ', this.state.vehicules);
+      console.log('orgvehicules: ', this.state.orgvehicules);
+      console.log('modele: ', this.state.modele);
     });
   }
 
   onDelete = (id) => {
-    axios.delete(`http://localhost:8000/archives/${id}`).then((res) => {
-      alert( " has been deleted successfully");
-      console.log('deleted items :',res.data.dataa)
+    axios.delete(`/archives/${id}`).then((res) => {
+      alert(' has been deleted successfully');
+      console.log('deleted items :', res.data.dataa);
       this.getVehicules();
     });
   };
@@ -82,14 +81,14 @@ this.setState({
     const result = vehicules.filter(
       (vehicule) =>
         vehicule.modele.toLowerCase().includes(searchTerm) ||
-        vehicule.marque.toLowerCase().includes(searchTerm) 
+        vehicule.marque.toLowerCase().includes(searchTerm)
     );
     this.setState({ vehicules: result });
   }
 
   handleTextSearch = (e) => {
     const searchTerm = e.currentTarget.value;
-    axios.get("http://localhost:8000/getvehicules").then((res) => {
+    axios.get('/getvehicules').then((res) => {
       if (res.data) {
         this.filterContent(res.data.dataa, searchTerm);
       }
@@ -130,14 +129,17 @@ this.setState({
                 <th scope="row">{index}</th>
 
                 <td>
-                  <a href={`http://localhost:8000/vehicules/${vehicule._id}`}>{vehicule.modele}</a>
+                  <a href={`/vehicules/${vehicule._id}`}>{vehicule.modele}</a>
                 </td>
                 <td>{vehicule.marque}</td>
-                <td><img
-              src={`http://localhost:8000/${vehicule.image}`}
-              alt={vehicule.image}
-              width="200" height="200"
-            /></td>
+                <td>
+                  <img
+                    src={`/${vehicule.image}`}
+                    alt={vehicule.image}
+                    width="200"
+                    height="200"
+                  />
+                </td>
 
                 <td>
                   <a className="btn btn-warning" href={`/edit/${vehicule._id}`}>
@@ -151,7 +153,10 @@ this.setState({
                   >
                     <i className="far fa-trash-alt"></i>&nbsp;Delete
                   </a>
-                  <a className="btn btn-warning" href={`/details/${vehicule._id}`}>
+                  <a
+                    className="btn btn-warning"
+                    href={`/details/${vehicule._id}`}
+                  >
                     <i className="fas fa-edit"></i>&nbsp;Details
                   </a>
                 </td>
@@ -164,24 +169,20 @@ this.setState({
         </a>
 
         <ReactPaginate
-                    previousLabel={"prev"}
-                    nextLabel={"next"}
-                    breakLabel={"..."}
-                    breakClassName={"break-me"}
-                    pageCount={this.state.pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={this.handlePageClick}
-                    containerClassName={"pagination"}
-                    subContainerClassName={"pages pagination"}
-                    activeClassName={"active"}/>
-
-
+          previousLabel={'prev'}
+          nextLabel={'next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={this.state.pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={this.handlePageClick}
+          containerClassName={'pagination'}
+          subContainerClassName={'pages pagination'}
+          activeClassName={'active'}
+        />
       </div>
-
-
     );
-
   }
 }
 
